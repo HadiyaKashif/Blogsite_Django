@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 #admin = HadiyaKashif and password is HadiyaDjango2024
 
 from pathlib import Path
+from decouple import config
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -318,5 +319,7 @@ LOGIN_URL = 'login'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
-RECAPTCHA_PUBLIC_KEY = '6LdFUZkpAAAAAMcquyw9wjNkXBIEjuNhohmmrAKw'
-RECAPTCHA_PRIVATE_KEY = '6LdFUZkpAAAAABFCYfhiyYbDs0LHv8NkyBv-6Coc'
+# RECAPTCHA_PUBLIC_KEY = '6LdFUZkpAAAAAMcquyw9wjNkXBIEjuNhohmmrAKw'
+# RECAPTCHA_PRIVATE_KEY = '6LdFUZkpAAAAABFCYfhiyYbDs0LHv8NkyBv-6Coc'
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
