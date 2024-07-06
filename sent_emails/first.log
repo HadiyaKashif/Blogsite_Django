@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: hadiya.kashif@gmail.com
+Date: Wed, 28 Feb 2024 15:53:28 -0000
+Message-ID: <170913560810.6800.8956899819084501731@DESKTOP-9HU6DH7>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/password-reset-confirm/MQ/c34kp4-54e9357b1c15b8c8fde8ef8ae2a7a202/
+
+Your username, in case you’ve forgotten: HadiyaKashif
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

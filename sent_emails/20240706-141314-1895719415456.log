@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:5000
+From: webmaster@localhost
+To: hadiya.kashif@gmail.com
+Date: Sat, 06 Jul 2024 09:13:14 -0000
+Message-ID: <172025719455.8676.4520699517101039802@DESKTOP-9HU6DH7>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:5000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:5000/password-reset-confirm/MQ/c9qy62-52d94e279f0e52cbb5d4ce4ef4c6456f/
+
+Your username, in case you’ve forgotten: HadiyaKashif
+
+Thanks for using our site!
+
+The 127.0.0.1:5000 team
+
+
+
+-------------------------------------------------------------------------------

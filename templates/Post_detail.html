@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+{% load custom_filters %}
+    <article class="media content-section">
+      <img class = "rounded-circle article-img" src="{{ object.author.profile.image.url }}" style = "transform: translateY(30px);">
+        <div class="media-body">
+          <div class="article-metadata" style = "transform: translateY(-10px); margin-left: 70px;">
+            <h3>{{ object.author }}</h3>
+            <small class="text-muted">{{ object.date_posted|date:"M d, Y ; D" }}</small>
+            {% if object.author == user %}
+                <div>
+                    <a class = "btn btn-secondary btn-sm mt-1 mb-1" href = "{% url 'post-update' object.id%}">Update</a>
+                    <a class = "btn btn-danger btn-sm mt-1 mb-1" href = "{% url 'post-delete' object.id%}">Delete</a>
+                </div>
+            {% endif %}
+          </div>
+          <h2 class="article-title">{{ object.title }}</h2>
+          <p class="article-content">{{ object.content|adjust_image_sizes|safe}}</p> 
+          {% comment %} use |safe here(with content) so that the text features that can be bol or italic or anything else is visible or else without this we'll see the html on th page {% endcomment %}
+        </div>
+      </article>
+      <!-- COMMENTS  -->
+      <h2>Leave your comment!</h2>
+      <div id="comments_section">
+
+        {% if user.is_authenticated %}
+          <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ comment_form.as_p }}
+            <button class="btn btn-info" type="submit">Add comment</button>
+          </div>
+          </form>
+        {% else %}
+          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to add a comment!</a><br>
+        {% endif %}
+
+        {% if comments %}
+          <br></br>
+          <strong class="text-secondary">{{ object.comments.count }} Comments</strong>
+          <hr>
+          <ul>
+          {% for comment in comments %}
+            <li>           
+            <div>
+            <span>
+            <strong>{{ comment.author }} - </strong>
+          {% comment %} <strong class="text-info">{{ comment.author }} - </strong> {% endcomment %}
+            <small class="text-muted">{{ comment.date_posted }}</small>
+            </span>
+            <p>
+              {{ comment.message }}
+            </p>
+            </div>
+            </li>
+          {% endfor %}
+          </ul>
+        {% else %}
+          <strong class="text-secondary">No comments yet...</strong>
+        {% endif %}
+
+      </div>
+      <br></br>
+      <hr></hr>
+      {% if user.is_authenticated %}
+        {% if user.id != post.author.id %}
+          <form action = "{%url 'like-post' post.pk %}" method="POST">
+            {% csrf_token %}
+            {% if user in post.likes.all %}
+              <button type = "submit" name = "post_id" value = "{{ post.id }}" class = "btn btn-light"><i class = "fa fa-thumbs-down"></i></button>
+              {% comment %} - {{post.likes.count}} likes {% endcomment %}
+            {% else %}
+              <button type = "submit" name = "post_id" value = "{{ post.id }}" class = "btn btn-light"><i class = "fa fa-thumbs-up"></i></button>
+                {% comment %} Like {% endcomment %}
+              {% comment %} - {{post.likes.count}} likes {% endcomment %}
+            {% endif %}
+          </form>
+        {% endif %}
+        Total Likes: {{post.likes.count}}
+      {% else %}
+        <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like the post!</a><br>
+      {% endif %}
+      <hr></hr>
+      <h4>Author: </h4>
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ object.author.profile.image.url }}" class="img-fluid rounded-start">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ object.author }}</h5>
+              <small class="text-muted">{{ object.author.email }}</small>
+              <br></br>
+              {% if object.author.profile.about %}
+                <p class="card-text">{{ object.author.profile.about }}</p>
+              {% endif %}
+              
+                {% if object.author.profile.facebook_url %}
+                  <a href="{{object.author.profile.facebook_url}}" target="_blank" class="fa fa-facebook"></a>
+                {% endif %}
+                {% if object.author.profile.twitter_url %}
+                  <a href="{{object.author.profile.twitter_url}}" target="_blank" class="fa fa-twitter"></a>
+                {% endif %}
+                {% if object.author.profile.linkedIn_url %}
+                  <a href="{{object.author.profile.linkedIn_url}}" target="_blank" class="fa fa-linkedin"></a>
+                {% endif %}
+                {% if object.author.profile.instagram_url %}
+                  <a href="{{object.author.profile.instagram_url}}" target="_blank" class="fa fa-instagram"></a>
+                {% endif %}
+              
+              <a class="mr-2 text-muted" href="{% url 'user-posts' object.author.username %}"><p>More posts by {{object.author}}</p></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr></hr>
+      <a href = "{% url 'blog-home' %}" class = "btn btn-secondary">Back</a>
+{% endblock content%}

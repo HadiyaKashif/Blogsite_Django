@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                What are the rules to upload a blog post?
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>RULES: </strong>
+                    <ul>
+                        <li> You must <a class="ml-2" href="{% url 'register' %}">create</a> your profile in order to post a blog and then <a class="ml-2" href="{% url 'login' %}">login</a> to the site.
+                        <li> You can customize <a class="ml-2" href="{% url 'profile' %}">your profile </a> later by adding a profile image or altering the data you entered previously.
+                        <li> Your blog post can be on any topic.
+                        <li> Make sure the information you are sharing in your post is factually correct and well-delivered.
+                        <li> Refrain from engaging in heated discussions in comment section or it can bear severe consequences.
+                        <li> Any offensive/racist/extremist comment or post isn't allowed and could result in ban from the site.
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                On what topics can I post a blog?
+            </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>Your blog can be on any topic, ranging from education to politics. Just make sure your information comply with the rules.</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Can I post blogs without registering?
+            </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <p>No, it's necessary to register yourself on the site.</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Is this platform free or are there some posting charges?
+            </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>The platform is completely free and there is no membership or charges to post or to access any feature or content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Have some other query? <a class="ml-2" href="{% url 'blog-contact' %}">Message Here</a>
+        </small>
+    </div>
+{% endblock content%}
